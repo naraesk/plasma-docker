@@ -1,0 +1,22 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "david.baum@naraesk.eu",
+                "Name": "David Baum"
+            }
+        ],
+        "Description": "Controls Systemd services",
+        "Icon": "format-text-code",
+        "Id": "org.kde.systemd-control",
+        "License": "GPL",
+        "Name": "Systemd Control",
+        "ServiceTypes": [
+            "Plasma/Applet"
+        ],
+        "Version": "1.0",
+        "Website": "https://github.com/naraesk/plasma-systemd"
+    },
+    "X-Plasma-API": "declarativeappletscript",
+    "X-Plasma-MainScript": "ui/main.qml"
+}

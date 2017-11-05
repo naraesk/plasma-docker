@@ -1,0 +1,15 @@
+[Desktop Entry]
+Name=Systemd Control
+Comment=Controls Systemd services
+Encoding=UTF-8
+Icon=format-text-code
+ServiceTypes=Plasma/Applet
+Type=Service
+X-KDE-PluginInfo-Author=David Baum
+X-KDE-PluginInfo-Email=david.baum@naraesk.eu
+X-KDE-PluginInfo-Name=org.kde.systemd-control
+X-KDE-PluginInfo-License=GPL
+X-KDE-PluginInfo-Version=1.0
+X-KDE-PluginInfo-Website=https://github.com/naraesk/plasma-systemd
+X-Plasma-API=declarativeappletscript
+X-Plasma-MainScript=ui/main.qml

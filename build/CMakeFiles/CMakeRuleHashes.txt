@@ -1,0 +1,6 @@
+# Hashes of file build rules.
+1e3f186d419d10180a9246669a037278 CMakeFiles/fetch-translations
+0beeb72564e544a249a52cb341183c1e CMakeFiles/uninstall
+2603ee0c4a2d71915aa5679c70214399 org.kde.systemd-control-plasmoids-metadata.json
+1ed2ba9035aa7cbdf702876a7d0873bc process/CMakeFiles/plasmoidplugin_autogen
+7d5efcf30b0cc1cd3a84867182630662 releaseme
