@@ -14,6 +14,8 @@ This is a simple plasma applet for KDE Plasma 5 to control systemd services. It 
 4. make
 5. make install
 
+For Arch Linux there is a package availabe via AUR: https://aur.archlinux.org/packages/plasma5-applets-systemd/
+
 ### Prerequisite
 
 To work properly, you must be able to run `sudo systemctl` without password. Usually you can achieve this be editing `/etc/sudoers` with visudo. 
