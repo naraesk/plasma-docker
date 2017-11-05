@@ -1,4 +1,4 @@
-# PLasma systemd Control
+# Plasma Systemd Control
 
 This is a simple plasma applet for KDE Plasma 5 to control systemd services. It is not designed to be a complete user interface for systemd, but it provides an convenient way to start and stop selected services. 
 
