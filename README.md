@@ -16,7 +16,7 @@ I maid this for my own convenience and it only has i minimal ui. If you have mor
 4. make
 5. make install
 
-For Arch Linux there is a package availabe via AUR: https://aur.archlinux.org/packages/plasma5-applets-systemd/
+For Arch Linux there is a package availabe via AUR: https://aur.archlinux.org/packages/plasma5-applets-docker/
 
 ### Prerequisite
 
