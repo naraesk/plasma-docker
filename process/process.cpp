@@ -28,14 +28,15 @@ Process::~Process() {
 
 bool Process::isActive(const QString &name) {
     QStringList arguments;
-    arguments << "systemctl" << "is-active" << name;
-    start("sudo", arguments);
-    waitForStarted();
+    arguments << "-f" << name << "ps" << "-q";
+    //docker-compose -f ~/workspace/docker/nextcloud/docker-compose.yml ps -q
+    start("docker-compose", arguments);
+    //waitForStarted();
     waitForFinished();
-    if(readAll() == "active\n") {
-        return true;
-    } else {
+    if(readAll() == "") {
         return false;
+    } else {
+        return true;
     }
 }
 
@@ -50,5 +51,6 @@ void Process::start2(const QString &program, const QVariantList &arguments) {
         }
 
         start(program, args);
-        waitForStarted();
-        waitForFinished();}
+      //  waitForStarted();
+        //waitForFinished();
+}

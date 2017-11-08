@@ -21,4 +21,4 @@ add_subdirectory(process)
 
 
 # Add installatation target ("make install").
-plasma_install_package(plasmoid org.kde.systemd-control)
+plasma_install_package(plasmoid eu.naraesk.docker-control)

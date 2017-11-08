@@ -22,7 +22,7 @@ import QtQuick.Layouts 1.3
 import QtQuick.Controls 1.4
 import QtQuick.Dialogs 1.2
 import QtQuick.Controls.Styles 1.2
-import Process 1.0
+import eu.naraesk.docker.process 1.0
 
 Item {
     id: root
@@ -33,12 +33,12 @@ Item {
 
     Connections {
         target: plasmoid.configuration
-        onServicesChanged: loadServices()
+        onContainerChanged: loadServices()
     }
 
     function loadServices() {
         serviceModel.clear()
-        var list = plasmoid.configuration.services
+        var list = plasmoid.configuration.container
         for(var i in list) {
             var item = JSON.parse(list[i])
             serviceModel.append( item )
@@ -69,11 +69,11 @@ Item {
                     width: parent.width
 
                     function update() {
-                        statusSwitch.checked = process.isActive(model.service)
+                        statusSwitch.checked = process.isActive(model.dir)
                     }
 
                     Timer {
-                        interval: 1000
+                        interval: 1000*60*10
                         repeat: true
                         triggeredOnStart: true
                         running: true
@@ -87,9 +87,9 @@ Item {
                         Layout.leftMargin: 10
                         onClicked: {
                             if (checked) {
-                                process.start2('sudo', [ '/bin/systemctl', 'start', model.service ]);
+                                process.start2('docker-compose', [ '-f', model.dir, 'up', '-d' ]);
                             } else {
-                                process.start2('sudo', [ '/bin/systemctl', 'stop', model.service ]);
+                                process.start2('docker-compose', [ '-f', model.dir, 'down']);
                             }
                         }
                     }

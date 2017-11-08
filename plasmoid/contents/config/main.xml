@@ -6,6 +6,6 @@
     <kcfgfile name=""/>
   
     <group name="General">
-        <entry name="services" type="StringList"></entry>
+        <entry name="container" type="StringList"></entry>
    </group>
 </kcfg> 

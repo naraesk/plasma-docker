@@ -18,20 +18,20 @@
  */
 
 import QtQuick 2.5
-import QtQuick.Controls 1.3
+import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
 import QtQuick.Dialogs 1.2
 
 Item {
-    property var cfg_services: []
+    property var cfg_container: []
 
     id: root
     width: parent.width
     height: parent.height
 
     Component.onCompleted: {
-        var list = plasmoid.configuration.services
-        cfg_services = []
+        var list = plasmoid.configuration.container
+        cfg_container = []
         for(var i in list) {
             addService( JSON.parse(list[i]) )
         }
@@ -39,13 +39,13 @@ Item {
 
     function addService(object) {
         serviceModel.append( object )
-        cfg_services.push( JSON.stringify(object) )
+        cfg_container.push( JSON.stringify(object) )
     }
 
     function removeService(index) {
         if(serviceModel.count > 0) {
             serviceModel.remove(index)
-            cfg_services.splice(index,1)
+            cfg_container.splice(index,1)
         }
     }
 
@@ -54,28 +54,44 @@ Item {
         Layout.fillWidth: true
         GridLayout {
             id: layout
-            columns: 3
+            columns: 2
             rows: 3
             Layout.fillWidth: true
             width: parent.width
 
             Label {
-                text: i18n('Service name')
+                text: i18n('Project name')
                 Layout.alignment: Qt.AlignRight
             }
 
             TextField {
                 id: name
                 Layout.fillWidth: true
-                placeholderText: "service name"
+                placeholderText: "project name"
+            }
+            
+            Label {
+                text: i18n('YAML file')
+                Layout.alignment: Qt.AlignRight
+            }
+
+            TextField {
+                id: dir
+                Layout.fillWidth: true
+                placeholderText: "Path of YAML file"
             }
 
             Button {
+                anchors.right: layout.right
+                text: qsTr('Add container')
                 iconName: "list-add"
+                Layout.columnSpan: 2
+                Layout.alignment: Qt.AlignRight
                 onClicked: {
-                    var object = ({'service': name.text})
+                    var object = ({'service': name.text, 'dir': dir.text})
                     addService(object)
                     name.text = ""
+                    dir.text = ""
                 }
             }
        }
@@ -108,6 +124,11 @@ Item {
                             Label {
                                 Layout.fillWidth: true
                                 text: model.service
+                            }
+                            
+                            Label {
+                                Layout.fillWidth: true
+                                text: model.dir
                             }
 
                             Button {

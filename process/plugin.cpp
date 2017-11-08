@@ -22,5 +22,5 @@
 #include "process.h"
 
 void Plugin::registerTypes(const char *uri) {
-    qmlRegisterType<Process>("Process", 1, 0, "Process");
+    qmlRegisterType<Process>("eu.naraesk.docker.process", 1, 0, "Process");
 }
