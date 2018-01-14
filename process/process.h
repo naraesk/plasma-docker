@@ -32,7 +32,7 @@ public:
     ~Process();
 
 public Q_SLOTS:
-    bool isActive(const QString &name);
+    bool isActive(const QString &file, const QString &name);
     void start2(const QString &program, const QVariantList &arguments);
     //Q_INVOKABLE QByteArray readAll();
 };

@@ -1,20 +1,20 @@
 /*
  * Copyright (C) 2017 by David Baum <david.baum@naraesk.eu>
  *
- * This file is part of plasma-yamaha.
+ * This file is part of plasma-docker.
  *
- * plasma-systemd is free software: you can redistribute it and/or modify
+ * plasma-docker is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * plasma-systemd is distributed in the hope that it will be useful,
+ * plasma-docker is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with plasma-codeship.  If not, see <http://www.gnu.org/licenses/>.
+ * along with plasma-docker.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #include <QtQml>
@@ -26,12 +26,10 @@ Process::Process(QObject *parent) : QProcess(parent) {
 Process::~Process() {
 }
 
-bool Process::isActive(const QString &name) {
+bool Process::isActive(const QString &file, const QString &name) {
     QStringList arguments;
-    arguments << "-f" << name << "ps" << "-q";
-    //docker-compose -f ~/workspace/docker/nextcloud/docker-compose.yml ps -q
+    arguments << "-f" << file << "-p" << name << "ps" << "-q";
     start("docker-compose", arguments);
-    //waitForStarted();
     waitForFinished();
     if(readAll() == "") {
         return false;
