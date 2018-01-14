@@ -1,10 +1,12 @@
-# Plasma Systemd Control
+# Plasma Docker Control
 
-This is a simple plasma applet for KDE Plasma 5 to control systemd services. It is not designed to be a complete user interface for systemd, but it provides an convenient way to start and stop selected services. 
+This is a simple plasma applet for KDE Plasma 5 to control docker containers via docker-compose. It is not designed to be a complete user interface for docker, but it provides an convenient way to start (docker-compose up) and stop (docker-compose down) selected images/containers. 
+
+I maid this for my own convenience and it only has i minimal ui. If you have more talent at designing UIs please contribute! Feel free to open an issue if you want more features and I'look if I might find some time. But this project does not aim at being a KDE version of portainer.
 
 ### Supported Features
-* start service (`sudo systemctl start SERVICE`)
-* stop service (`sudo systemctl stop SERVICE`)
+* start image (`docker compose -f YAML_FILE up`)
+* stop image (`docker compose -f YAML_FILE down`)
 * updates automatically if status changed externally
 
 ### Installation
@@ -14,9 +16,8 @@ This is a simple plasma applet for KDE Plasma 5 to control systemd services. It 
 4. make
 5. make install
 
-For Arch Linux there is a package availabe via AUR: https://aur.archlinux.org/packages/plasma5-applets-systemd/
+For Arch Linux there is a package availabe via AUR: https://aur.archlinux.org/packages/plasma5-applets-docker/
 
 ### Prerequisite
 
-To work properly, you must be able to run `sudo systemctl` without password. Usually you can achieve this be editing `/etc/sudoers` with visudo. 
-
+Please install docker. Most distribution should provide packages for it.
