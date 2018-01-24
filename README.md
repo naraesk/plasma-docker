@@ -12,7 +12,7 @@ I maid this for my own convenience and it only has i minimal ui. If you have mor
 ### Installation
 1. mkdir biuld
 2. cd build
-3. cmake -DCMAKE_INSTALL_PREFIX=`kf5-config --prefix` -DCMAKE_BUILD_TYPE=Release -DLIB_INSTALL_DIR=lib -DKDE_INSTALL_USE_QT_SYS_PATHS=ON ../
+3. cmake -DCMAKE_INSTALL_PREFIX=\`kf5-config --prefix\` -DCMAKE_BUILD_TYPE=Release -DLIB_INSTALL_DIR=lib -DKDE_INSTALL_USE_QT_SYS_PATHS=ON ../
 4. make
 5. make install
 
