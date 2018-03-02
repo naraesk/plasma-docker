@@ -20,4 +20,4 @@ For Arch Linux there is a package availabe via AUR: https://aur.archlinux.org/pa
 
 ### Prerequisite
 
-Please install docker. Most distributions should provide packages for it.
+Please install docker-compose. Most distributions should provide packages for it.
