@@ -49,6 +49,4 @@ void Process::start2(const QString &program, const QVariantList &arguments) {
         }
 
         start(program, args);
-      //  waitForStarted();
-        //waitForFinished();
 }
