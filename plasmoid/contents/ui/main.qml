@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 by David Baum <david.baum@naraesk.eu>
+ * Copyright (C) 2018 by David Baum <david.baum@naraesk.eu>
  *
  * This file is part of plasma-docker.
  *
@@ -19,9 +19,9 @@
 
 import QtQuick 2.5
 import QtQuick.Layouts 1.3
-import QtQuick.Controls 1.4
-import QtQuick.Dialogs 1.2
-import QtQuick.Controls.Styles 1.2
+import QtQuick.Controls 1.3
+import QtQuick.Dialogs 1.3
+import QtQuick.Controls.Styles 1.3
 import eu.naraesk.docker.process 1.0
 
 Item {

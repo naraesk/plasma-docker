@@ -1,26 +1,26 @@
 /*
- * Copyright (C) 2017 by David Baum <david.baum@naraesk.eu>
+ * Copyright (C) 2018 by David Baum <david.baum@naraesk.eu>
  *
  * This file is part of plasma-yamaha.
  *
- * plasma-systemd is free software: you can redistribute it and/or modify
+ * plasma-docker is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * plasma-systemd is distributed in the hope that it will be useful,
+ * plasma-docker is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with plasma-codeship.  If not, see <http://www.gnu.org/licenses/>.
+ * along with plasma-docker.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 import QtQuick 2.5
-import QtQuick.Controls 1.4
-import QtQuick.Layouts 1.1
-import QtQuick.Dialogs 1.2
+import QtQuick.Controls 1.3
+import QtQuick.Layouts 1.3
+import QtQuick.Dialogs 1.3
 
 Item {
     property var cfg_container: []
@@ -36,6 +36,18 @@ Item {
             addService( JSON.parse(list[i]) )
         }
    }
+
+    function up(index, name) {
+        serviceModel.move(index, index-1,1)
+        var object = cfg_container.splice(index,1)
+        cfg_container.splice(index-1, 0, object )
+    }
+
+    function down(index, name) {
+        serviceModel.move(index, index+1,1)
+        var object = cfg_container.splice(index,1)
+        cfg_container.splice(index+1, 0, object)
+    }
 
     function addService(object) {
         serviceModel.append( object )
@@ -60,25 +72,25 @@ Item {
             width: parent.width
 
             Label {
-                text: i18n('Project name')
+                text: i18n('Title')
                 Layout.alignment: Qt.AlignRight
             }
 
             TextField {
                 id: name
                 Layout.fillWidth: true
-                placeholderText: "project name"
+                placeholderText: "Display name"
             }
             
             Label {
-                text: i18n('YAML file')
+                text: i18n('Compose file')
                 Layout.alignment: Qt.AlignRight
             }
 
             TextField {
                 id: dir
                 Layout.fillWidth: true
-                placeholderText: "Path of YAML file"
+                placeholderText: "Path of compose file"
             }
 
             Button {
@@ -104,37 +116,63 @@ Item {
                 id: serviceModel
             }
 
-            RowLayout {
+            TableView {
+                model: serviceModel
+                id: view
                 Layout.fillWidth: true
                 Layout.fillHeight: true
+                sortIndicatorVisible: false
 
-                ScrollView {
-                    Layout.fillWidth: true
-                    Layout.fillHeight: true
+                TableViewColumn {
+                    role: "service"
+                    title: i18n("Service name")
+                    width: parent.width * 0.3
+                    horizontalAlignment: Text.AlignHCenter
+                    delegate: Component {
+                        Text {
+                            text: styleData.value
+                            color: styleData.textColor
+                        }
+                    }
+                }
 
-                    frameVisible: true
+                TableViewColumn {
+                    role: "dir"
+                    title: i18n("Compose file")
+                    width: parent.width * 0.58
+                    horizontalAlignment: Text.AlignHCenter
+                    delegate: Component {
+                        Text {
+                            text: styleData.value
+                            color: styleData.textColor
+                        }
+                    }
+                }
 
-                    ListView {
-                        width: parent.width
-                        model: serviceModel
-
-                        delegate: RowLayout {
-                            width: parent.width
-
-                            Label {
-                                Layout.fillWidth: true
-                                text: model.service
-                            }
-                            
-                            Label {
-                                Layout.fillWidth: true
-                                text: model.dir
+                TableViewColumn {
+                    role: "actions"
+                    title: i18n("Actions")
+                    width: parent.width * 0.1
+                    horizontalAlignment: Text.AlignHCenter
+                    delegate: Component {
+                        Row {
+                            id: row
+                            Button {
+                                iconName: "list-remove"
+                                onClicked: removeService(model.index)
+                                height: 20
                             }
 
                             Button {
-                                id: removeServiceButton
-                                iconName: "list-remove"
-                                onClicked: removeService(model.index)
+                                iconName: "arrow-up"
+                                onClicked: up(model.index)
+                                height: 20
+                            }
+
+                            Button {
+                                iconName: "arrow-down"
+                                onClicked: down(model.index)
+                                height: 20
                             }
                         }
                     }
