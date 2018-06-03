@@ -1,7 +1,7 @@
 /*
  * Copyright (C) 2018 by David Baum <david.baum@naraesk.eu>
  *
- * This file is part of plasma-yamaha.
+ * This file is part of plasma-docker.
  *
  * plasma-docker is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
