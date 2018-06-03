@@ -66,7 +66,7 @@ Item {
         Layout.fillWidth: true
         GridLayout {
             id: layout
-            columns: 2
+            columns: 3
             rows: 3
             Layout.fillWidth: true
             width: parent.width
@@ -80,6 +80,7 @@ Item {
                 id: name
                 Layout.fillWidth: true
                 placeholderText: "Display name"
+                Layout.columnSpan: 2
             }
             
             Label {
@@ -91,6 +92,14 @@ Item {
                 id: dir
                 Layout.fillWidth: true
                 placeholderText: "Path of compose file"
+            }
+            
+            Button {
+                id: chooseDirectory
+                text: i18n("Select")
+                onClicked: {
+                    fileDialog.visible = true
+                }
             }
 
             Button {
@@ -104,6 +113,22 @@ Item {
                     addService(object)
                     name.text = ""
                     dir.text = ""
+                }
+            }
+            
+            FileDialog {
+                id: fileDialog
+                title: i18n("Please choose a compose file")
+                folder: shortcuts.home
+                nameFilters: [ "Docker compose files (*.yml)"]
+                selectedNameFilter: "Docker compose files (*.yml)"
+                visible: false
+                onAccepted: {
+                    var folderPath = fileDialog.fileUrl.toString();
+                    // remove prefixed "file:///"
+                    folderPath = folderPath.replace(/^(file:\/{2})|(qrc:\/{2})|(http:\/{2})/,"");
+                    // unescape html codes like '%23' for '#'
+                    dir.text = decodeURIComponent(folderPath);
                 }
             }
        }
