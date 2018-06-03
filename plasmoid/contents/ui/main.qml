@@ -26,8 +26,6 @@ import eu.naraesk.docker.process 1.0
 
 Item {
     id: root
-    Layout.maximumHeight: view.contentHeight
-    Layout.minimumHeight: Layout.maximumHeight
 
     Component.onCompleted: {
         loadServices()
@@ -55,51 +53,48 @@ Item {
         id: serviceModel
     }
 
-    ScrollView {
-        height: view.contentHeight
+    ListView {
+        id: view
+        width: parent.width
+        height: parent.height
+        model: serviceModel
+        spacing: 7
+        interactive: false
 
-        ListView {
-            id: view
+        delegate: RowLayout {
             width: parent.width
-            model: serviceModel
-            spacing: 7
-            Layout.fillHeight: true
 
-            delegate: RowLayout {
-                width: parent.width
+            function update() {
+                statusSwitch.checked = process.isActive(model.dir, model.service)
+            }
 
-                function update() {
-                    statusSwitch.checked = process.isActive(model.dir, model.service)
+            Timer {
+                interval: 1000*60*10
+                repeat: true
+                triggeredOnStart: true
+                running: true
+                onTriggered: {
+                    update()
                 }
+            }
 
-                Timer {
-                    interval: 1000*60*10
-                    repeat: true
-                    triggeredOnStart: true
-                    running: true
-                    onTriggered: {
-                        update()
+            Switch {
+                id: statusSwitch
+                Layout.leftMargin: 10
+                checked: false
+                onClicked: {
+                    if (checked) {
+                        process.start2('docker-compose', [ '-f', model.dir, '-p', model.service, 'up', '-d' ]);
+                    } else {
+                        process.start2('docker-compose', [ '-f', model.dir, '-p', model.service, 'down']);
                     }
                 }
+            }
 
-                Switch {
-                    id: statusSwitch
-                    Layout.leftMargin: 10
-                    checked: false
-                    onClicked: {
-                        if (checked) {
-                            process.start2('docker-compose', [ '-f', model.dir, '-p', model.service, 'up', '-d' ]);
-                        } else {
-                            process.start2('docker-compose', [ '-f', model.dir, '-p', model.service, 'down']);
-                        }
-                    }
-                }
-
-                Label {
-                    id: serviceName
-                    text: model.service
-                    Layout.fillWidth: true
-                }
+            Label {
+                id: serviceName
+                text: model.service
+                Layout.fillWidth: true
             }
         }
     }
