@@ -10,11 +10,13 @@ I maid this for my own convenience and it only has i minimal ui. If you have mor
 * updates automatically if status changed externally
 
 ### Installation
-1. mkdir biuld
-2. cd build
-3. cmake -DCMAKE_INSTALL_PREFIX=\`qtpaths --install-prefix\` -DCMAKE_BUILD_TYPE=Release -DKDE_INSTALL_LIBDIR=lib -DKDE_INSTALL_USE_QT_SYS_PATHS=ON ../
-4. make
-5. make install
+```
+mkdir biuld
+cd build
+cmake -DCMAKE_INSTALL_PREFIX=`kf5-config --prefix` -DCMAKE_BUILD_TYPE=Release -DKDE_INSTALL_LIBDIR=lib -DKDE_INSTALL_USE_QT_SYS_PATHS=ON ../
+make
+make install
+```
 
 For Arch Linux there is a package availabe via AUR: https://aur.archlinux.org/packages/plasma5-applets-docker/
 
