@@ -9,6 +9,10 @@ I maid this for my own convenience and it only has i minimal ui. If you have mor
 * stop image (`docker compose -f YAML_FILE down`)
 * updates automatically if status changed externally
 
+### Prerequisite
+
+Please install docker-compose. Most distributions should provide packages for it.
+
 ### Installation
 ```
 mkdir biuld
@@ -19,7 +23,3 @@ make install
 ```
 
 For Arch Linux there is a package availabe via AUR: https://aur.archlinux.org/packages/plasma5-applets-docker/
-
-### Prerequisite
-
-Please install docker-compose. Most distributions should provide packages for it.
