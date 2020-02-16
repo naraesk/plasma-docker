@@ -79,7 +79,7 @@ Item {
             TextField {
                 id: name
                 Layout.fillWidth: true
-                placeholderText: "Display name"
+                placeholderText: "Display name of stack"
                 Layout.columnSpan: 2
             }
             
@@ -104,7 +104,7 @@ Item {
 
             Button {
                 anchors.right: layout.right
-                text: qsTr('Add container')
+                text: qsTr('Add stack')
                 iconName: "list-add"
                 Layout.columnSpan: 2
                 Layout.alignment: Qt.AlignRight
@@ -150,7 +150,7 @@ Item {
 
                 TableViewColumn {
                     role: "service"
-                    title: i18n("Service name")
+                    title: i18n("Stack name")
                     width: parent.width * 0.3
                     horizontalAlignment: Text.AlignHCenter
                     delegate: Component {
