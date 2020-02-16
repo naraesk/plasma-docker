@@ -41,6 +41,4 @@ RowLayout {
         text: model.service
         Layout.fillWidth: true
     }
-    
-    ListView.onAdd: console.log("iate")
 }
