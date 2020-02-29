@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2017 by David Baum <david.baum@naraesk.eu>
+ * Copyright (C) 2020 by David Baum <david.baum@naraesk.eu>
  *
  * This file is part of plasma-docker.
  *
@@ -17,7 +17,6 @@
  * along with plasma-docker.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include <QtQml>
 #include "process.h"
 
 Process::Process(QObject *parent) : QProcess(parent) {
@@ -26,27 +25,54 @@ Process::Process(QObject *parent) : QProcess(parent) {
 Process::~Process() {
 }
 
-bool Process::isActive(const QString &file, const QString &name) {
+void Process::startStack(const QString &file) {
     QStringList arguments;
-    arguments << "-f" << file << "-p" << name << "ps" << "-q";
-    start("docker-compose", arguments);
-    waitForFinished();
-    if(readAll() == "") {
-        return false;
-    } else {
-        return true;
-    }
+    arguments << "up" << "-d";
+    runDockerCompose(file, arguments);
 }
 
+void Process::stopStack(const QString &file) {
+    QStringList arguments;
+    arguments << "stop";
+    runDockerCompose(file, arguments);
+}
 
-void Process::start2(const QString &program, const QVariantList &arguments) {
-        QStringList args;
+void Process::startService(const QString &file, const QString &serviceName) {
+    QStringList arguments;
+    arguments  << "up" << "-d" << serviceName;
+    runDockerCompose(file, arguments);
+}
 
-        // convert QVariantList from QML to QStringList for QProcess
+void Process::stopService(const QString &file, const QString &serviceName) {
+    QStringList arguments;
+    arguments << "stop" << serviceName;
+    runDockerCompose(file, arguments);
+}
 
-        for (int i = 0; i < arguments.length(); i++) {
-            args << arguments[i].toString();
-        }
+QStringList Process::getServices(const QString &file) {
+    QStringList arguments;
+    arguments << "ps" << "--services";
+    runDockerCompose(file, arguments);
+    waitForFinished();
+    QString composeOutput(readAllStandardOutput());
+    return composeOutput.split("\n", QString::SkipEmptyParts);
+}
 
-        start(program, args);
+QStringList Process::getRunningServices(const QString &file) {
+    QStringList arguments;
+    arguments << "ps" << "--services" << "--filter" << "status=running";
+    runDockerCompose(file, arguments);
+    waitForFinished();
+    QString composeOutput(readAllStandardOutput());
+    return composeOutput.split("\n", QString::SkipEmptyParts);
+}
+
+void Process::runDockerCompose(const QString &file, const QStringList &arguments) {
+    QStringList allArguments;
+    allArguments << "-f" << file << arguments;
+    start("docker-compose", allArguments);
+}
+
+void Process::runDocker(const QStringList &arguments) {
+    start("docker", arguments);
 }

@@ -1,27 +1,26 @@
 /*
- * Copyright (C) 2017 by David Baum <david.baum@naraesk.eu>
+ * Copyright (C) 2020 by David Baum <david.baum@naraesk.eu>
  *
- * This file is part of plasma-yamaha.
+ * This file is part of plasma-docker.
  *
- * plasma-systemd is free software: you can redistribute it and/or modify
+ * plasma-docker is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
  * the Free Software Foundation, either version 3 of the License, or
  * (at your option) any later version.
  *
- * plasma-systemd is distributed in the hope that it will be useful,
+ * plasma-docker is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
  * GNU General Public License for more details.
  *
  * You should have received a copy of the GNU General Public License
- * along with plasma-codeship.  If not, see <http://www.gnu.org/licenses/>.
+ * along with plasma-docker.  If not, see <http://www.gnu.org/licenses/>.
  */
 
 #ifndef PROCESS_H
 #define PROCESS_H
 
 #include <QProcess>
-#include <QVariant>
 #include <QString>
 
 class Process : public QProcess
@@ -31,10 +30,17 @@ public:
     Process( QObject *parent = 0);
     ~Process();
 
+private:
+    void runDockerCompose(const QString &file, const QStringList &arguments);
+    void runDocker(const QStringList &arguments);
+
 public Q_SLOTS:
-    bool isActive(const QString &file, const QString &name);
-    void start2(const QString &program, const QVariantList &arguments);
-    //Q_INVOKABLE QByteArray readAll();
+    void startStack(const QString &file);
+    void stopStack(const QString &file);
+    void startService(const QString &file, const QString &serviceName);
+    void stopService(const QString &file, const QString &serviceName);
+    QStringList getServices(const QString &file);
+    QStringList getRunningServices(const QString &file);
 };
 
 #endif // PROCESS_H

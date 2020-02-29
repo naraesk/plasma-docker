@@ -18,12 +18,28 @@
  */
 
 import QtQuick 2.12
-import org.kde.plasma.configuration 2.0
 
-ConfigModel {
-    ConfigCategory {
-         name: i18n('General')
-         icon: 'format-text-code'
-         source: 'config/Config.qml'
+Item {
+    id: compactRep;
+    height: units.iconSizes.toolbar;
+    width: units.iconSizes.toolbar;
+    
+    Image {
+        id: compactIcon;
+        source: "../../images/icon";
+        fillMode: Image.PreserveAspectCrop;
+        anchors.fill: parent;
+        anchors.margins: units.smallSpacing;
+        height: parent.height;
+        width: parent.width;
     }
-} 
+
+    MouseArea {
+        id: mouseArea;
+        anchors.fill: parent;
+        onClicked: {
+            plasmoid.expanded = !plasmoid.expanded;
+        }
+        hoverEnabled: true;
+    }
+}

@@ -19,56 +19,10 @@
 
 import QtQuick 2.5
 import QtQuick.Layouts 1.3
-import QtQuick.Controls 1.3
-import QtQuick.Dialogs 1.3
-import eu.naraesk.docker.process 1.0
+import org.kde.plasma.plasmoid 2.0
+
 
 Item {
-    id: root
-    Layout.minimumWidth: 170;
-
-    Component.onCompleted: {
-        loadServices()
-    }
-
-    Connections {
-        target: plasmoid.configuration
-        onContainerChanged: loadServices()
-    }
-
-    function loadServices() {
-        serviceModel.clear()
-        var list = plasmoid.configuration.container
-        for(var i in list) {
-            var item = JSON.parse(list[i])
-            serviceModel.append( item )
-        }
-
-        var numberOfRows = serviceModel.rowCount();
-
-        if(numberOfRows == 0) {
-            root.Layout.minimumHeight = view.contentItem.children[0].height;
-        } else {
-            root.Layout.minimumHeight = view.contentItem.children[0].height + (numberOfRows) * 18 + 10
-        }
-    }
-
-    Process {
-        id: process
-    }
-
-    ListModel {
-        id: serviceModel
-    }
-    
-    ListView {
-        id: view
-        width: parent.width
-        height: parent.height
-        header: Header {}
-        model: serviceModel
-        spacing: 7
-        interactive: false
-        delegate: StackRow {}
-    }
+    Plasmoid.compactRepresentation: CompactRepresentation {}
+    Plasmoid.fullRepresentation: FullRepresentation{}
 }

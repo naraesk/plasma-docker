@@ -17,13 +17,18 @@
  * along with plasma-docker.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-import QtQuick 2.12
-import org.kde.plasma.configuration 2.0
-
-ConfigModel {
-    ConfigCategory {
-         name: i18n('General')
-         icon: 'format-text-code'
-         source: 'config/Config.qml'
+function getHeight(visible, height) {
+    if(visible) {
+        return height;
+    } else {
+        return 0;
     }
-} 
+}
+
+function startAndStopService(status){
+    if (status) {
+        process.startService(model.file, model.name);
+    } else {
+        process.stopService(model.file, model.name);
+    }
+}
