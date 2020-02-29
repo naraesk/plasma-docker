@@ -17,7 +17,7 @@ Please install docker-compose. Most distributions should provide packages for it
 
 ### Installation
 
-Run `install.sh` to install the plasmoid using sudo or run the following commands manually.
+Run `install.sh` to install the plasmoid or run the following commands manually.
 
 1. `mkdir biuld && cd build`
 2. ```cmake -DCMAKE_INSTALL_PREFIX=`kf5-config --install-prefix` -DCMAKE_BUILD_TYPE=Release -DKDE_INSTALL_LIBDIR=lib -DKDE_INSTALL_USE_QT_SYS_PATHS=ON ../```
