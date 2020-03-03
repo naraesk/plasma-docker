@@ -76,3 +76,12 @@ void Process::runDockerCompose(const QString &file, const QStringList &arguments
 void Process::runDocker(const QStringList &arguments) {
     start("docker", arguments);
 }
+
+void Process::showLog(const QString& file) {
+    QStringList arguments;
+    arguments << "-e"
+              <<" docker-compose"
+              << "-f" << file
+              << "logs" << "-f";
+    start("konsole", arguments);
+}

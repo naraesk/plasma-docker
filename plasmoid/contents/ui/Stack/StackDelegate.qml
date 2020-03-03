@@ -22,6 +22,7 @@ import QtQuick.Controls 2.12;
 import QtQuick.Dialogs 1.3;
 import QtQuick.Extras 1.4;
 import QtQuick.Layouts 1.12;
+import eu.naraesk.docker.process 1.2;
 import org.kde.plasma.core 2.0 as PlasmaCore;
 import "stack.js" as Stack;
 
@@ -83,6 +84,14 @@ Component {
             font.pixelSize: 22;
         }
 
+        ToolButton {
+            id: logButton;
+            icon.name: "text-plain";
+            ToolTip.text: qsTr("Show log");
+            ToolTip.visible: hovered;
+            onClicked: stackProcess.showLog(composeFile);
+        }
+
         Timer {
             interval: 1000 * 30;
             repeat: true;
@@ -92,6 +101,10 @@ Component {
                 Stack.updateSection(composeFile);
                 statusIndicator.on = Stack.checkStatus(section);
             }
+        }
+
+        Process {
+            id: stackProcess;
         }
     }
 }
