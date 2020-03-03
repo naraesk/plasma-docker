@@ -4,7 +4,7 @@ This is a simple plasma applet for KDE Plasma 5 to control docker containers via
 
 I maid this for my own convenience and it only has a minimal ui. Feel free to open an issue if you want more features and I'll have a look if I might find some time.
 
-### Supported Features
+### Features
 * start and stop stacks (`docker-compose up` and `docker compose stop`)
 * start and stop services (`docker-compose up SERVICE` and `docker compose stop SERVICE`)
 * start shell for services (`docker-compose exec SERVICE sh`)
