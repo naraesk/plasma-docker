@@ -25,10 +25,18 @@ function getHeight(visible, height) {
     }
 }
 
-function startAndStopService(status){
+function startAndStopService(status, file, name){
     if (status) {
-        process.startService(model.file, model.name);
+        startService(file, name);
     } else {
-        process.stopService(model.file, model.name);
+        stopService(file, name);
     }
+}
+
+function startService(file, name) {
+    process.startService(file, name);
+}
+
+function stopService(file, name) {
+    process.stopService(file, name);
 }

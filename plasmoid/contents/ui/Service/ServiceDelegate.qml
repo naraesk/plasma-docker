@@ -60,7 +60,7 @@ Component {
             width: 15;
             onClicked: {
                 statusIndicator.on = !statusIndicator.on;
-                Service.startAndStopService(statusIndicator.on);
+                Service.startAndStopService(statusIndicator.on, model.file, model.name);
             }
 
             StatusIndicator {
