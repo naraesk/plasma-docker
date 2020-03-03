@@ -22,6 +22,7 @@ import QtQuick.Controls 2.12;
 import QtQuick.Dialogs 1.3;
 import QtQuick.Extras 1.4;
 import QtQuick.Layouts 1.12;
+import eu.naraesk.docker.process 1.2;
 import org.kde.plasma.core 2.0 as PlasmaCore;
 import "service.js" as Service;
 
@@ -76,6 +77,18 @@ Component {
             Layout.bottomMargin: units.smallSpacing;
             id: text;
             text: name;
+        }
+
+        ToolButton {
+            id: execButton;
+            icon.name: "bash";
+            ToolTip.text: qsTr("Run shell");
+            ToolTip.visible: hovered;
+            onClicked: serviceProcess.runShell(model.file, model.name);
+        }
+
+        Process {
+            id: serviceProcess;
         }
     }
 }

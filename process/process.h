@@ -42,6 +42,7 @@ public Q_SLOTS:
     QStringList getServices(const QString &file);
     QStringList getRunningServices(const QString &file);
     void showLog(const QString& file);
+    void runShell(const QString &file, const QString &serviceName);
 };
 
 #endif // PROCESS_H

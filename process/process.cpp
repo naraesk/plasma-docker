@@ -77,11 +77,22 @@ void Process::runDocker(const QStringList &arguments) {
     start("docker", arguments);
 }
 
-void Process::showLog(const QString& file) {
+void Process::showLog(const QString &file) {
     QStringList arguments;
     arguments << "-e"
               <<" docker-compose"
               << "-f" << file
               << "logs" << "-f";
+    start("konsole", arguments);
+}
+
+void Process::runShell(const QString &file, const QString &serviceName) {
+    QStringList arguments;
+    arguments << "-e"
+              << "docker-compose"
+              << "-f" << file
+              << "exec"
+              << serviceName
+              << "sh";
     start("konsole", arguments);
 }
