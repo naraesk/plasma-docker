@@ -84,6 +84,7 @@ Component {
             icon.name: "bash";
             ToolTip.text: qsTr("Run shell");
             ToolTip.visible: hovered;
+            visible: model.online;
             onClicked: serviceProcess.runShell(model.file, model.name);
         }
 
