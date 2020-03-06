@@ -44,6 +44,7 @@ function createModelItem(file, name, stack) {
         name: name,
         stack: stack,
         aVisible: false,
-        online: false
+        online: false,
+        port: process.isPublic(file, name)
     };
 }

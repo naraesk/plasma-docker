@@ -98,3 +98,36 @@ void Process::runShell(const QString &file, const QString &serviceName) {
               << "sh";
     start("konsole", arguments);
 }
+
+void Process::startBrowser(const QString &file, const QString &serviceName) {
+    QString containerID = getContainerID(file, serviceName);
+    QStringList arguments;
+    arguments << "port" << containerID;
+    runDocker(arguments);
+    waitForFinished();
+    QString dockerOutput(readAllStandardOutput());
+    QStringList ports = dockerOutput.split("\n", QString::SkipEmptyParts);
+    for (QString port : ports) {
+        const QString f = port.section("->", 1, 1);
+        const QUrl url("http://" + f.trimmed());
+        KRun::runUrl(url, "text/html", 0, KRun::RunFlags());
+    }
+}
+
+QString Process::getContainerID(const QString &file, const QString &serviceName) {
+    QStringList arguments;
+    arguments << "ps" << "-q" << serviceName;
+    runDockerCompose(file, arguments);
+    waitForFinished();
+    QString composeOutput(readAllStandardOutput());
+    return composeOutput.trimmed();
+}
+
+bool Process::isPublic(const QString &file, const QString serviceName) {
+    QStringList arguments;
+    arguments << "ps" << serviceName;
+    runDockerCompose(file, arguments);
+    waitForFinished();
+    QString composeOutput(readAllStandardOutput());
+    return composeOutput.contains("->");
+}

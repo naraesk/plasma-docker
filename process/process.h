@@ -33,6 +33,7 @@ public:
 private:
     void runDockerCompose(const QString &file, const QStringList &arguments);
     void runDocker(const QStringList &arguments);
+    QString getContainerID(const QString &file, const QString &serviceName);
 
 public Q_SLOTS:
     void startStack(const QString &file);
@@ -43,6 +44,8 @@ public Q_SLOTS:
     QStringList getRunningServices(const QString &file);
     void showLog(const QString& file);
     void runShell(const QString &file, const QString &serviceName);
+    void startBrowser(const QString &file, const QString &serviceName);
+    bool isPublic(const QString &file, const QString serviceName);
 };
 
 #endif // PROCESS_H

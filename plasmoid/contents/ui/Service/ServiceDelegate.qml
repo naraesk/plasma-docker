@@ -88,6 +88,17 @@ Component {
             onClicked: serviceProcess.runShell(model.file, model.name);
         }
 
+        ToolButton {
+            id: browserButton;
+            icon.name: "browser";
+            icon.width: units.iconSizes.small;
+            icon.height: units.iconSizes.small;
+            ToolTip.text: qsTr("Open in browser");
+            ToolTip.visible: hovered;
+            visible: model.online && model.port;
+            onClicked: serviceProcess.startBrowser(model.file, model.name);
+        }
+
         Process {
             id: serviceProcess;
         }
