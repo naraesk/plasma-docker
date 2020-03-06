@@ -13,7 +13,7 @@ I maid this for my own convenience and it only has a minimal ui. Feel free to op
 * show log files (`docker-compose logs`)
 * updates automatically if status changed externally (delay up to 30s)
 
-### Installation
+## Manual Installation
 
 Please install docker-compose. Most distributions should provide packages for it. Then, run `install.sh` to install the plasmoid or run the following commands manually.
 
@@ -23,5 +23,7 @@ Please install docker-compose. Most distributions should provide packages for it
 4. `sudo make install`
 5. `kquitapp5 plasmashell`
 6. `kstart5 plasmashell`
+
+## Packages
 
 For Arch Linux there is a package availabe via AUR: https://aur.archlinux.org/packages/plasma5-applets-docker/
