@@ -92,6 +92,16 @@ Component {
             onClicked: stackProcess.showLog(composeFile);
         }
 
+        ToolButton {
+            id: editButton;
+            icon.name: "edit";
+            icon.width: units.iconSizes.small;
+            icon.height: units.iconSizes.small;
+            ToolTip.text: qsTr("Edit file");
+            ToolTip.visible: hovered;
+            onClicked: stackProcess.editFile(composeFile);
+        }
+
         Timer {
             interval: 1000 * 30;
             repeat: true;

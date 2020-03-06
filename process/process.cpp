@@ -18,6 +18,10 @@
  */
 
 #include "process.h"
+#include <KRun>
+#include <QUrl>
+#include <QDebug>
+
 
 Process::Process(QObject *parent) : QProcess(parent) {
 }
@@ -131,3 +135,10 @@ bool Process::isPublic(const QString &file, const QString serviceName) {
     QString composeOutput(readAllStandardOutput());
     return composeOutput.contains("->");
 }
+
+void Process::editFile(const QString &file) {
+    KRun::runUrl(file, "application/x-yaml", 0, KRun::RunFlags());
+}
+
+// show all public avaible containers
+// docker ps --format "{{.ID}}@@{{.Ports}}"

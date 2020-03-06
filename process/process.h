@@ -46,6 +46,7 @@ public Q_SLOTS:
     void runShell(const QString &file, const QString &serviceName);
     void startBrowser(const QString &file, const QString &serviceName);
     bool isPublic(const QString &file, const QString serviceName);
+    void editFile(const QString &file);
 };
 
 #endif // PROCESS_H
