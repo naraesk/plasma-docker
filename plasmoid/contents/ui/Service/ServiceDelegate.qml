@@ -35,8 +35,7 @@ Component {
         property bool online: model.online;
         Layout.leftMargin: 20;
         Layout.fillWidth: true;
-        spacing: 10;
-        anchors.fill: parent.left;
+        spacing: 0;
 
         onVisibleChanged: {
             height = Service.getHeight(visible, text.height);
@@ -72,6 +71,11 @@ Component {
             }
         }
 
+        Rectangle {
+            id: spacer2;
+            width: units.smallSpacing;
+        }
+
         Label {
             Layout.topMargin: units.smallSpacing;
             Layout.bottomMargin: units.smallSpacing;
@@ -79,9 +83,16 @@ Component {
             text: name;
         }
 
+        Rectangle {
+            id: spacer3;
+            width: units.largeSpacing;
+        }
+
         ToolButton {
             id: execButton;
             icon.name: "bash";
+            icon.width: units.iconSizes.small;
+            icon.height: units.iconSizes.small;
             ToolTip.text: qsTr("Run shell");
             ToolTip.visible: hovered;
             visible: model.online;

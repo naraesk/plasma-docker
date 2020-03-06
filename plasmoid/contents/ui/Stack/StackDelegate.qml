@@ -32,8 +32,6 @@ Component {
     RowLayout {        
         id: stackRow;
         height: stackName.height;
-        Layout.alignment: Qt.AlignVCenter;
-
         property string composeFile: "";
         property bool isExpanded: false;
 
@@ -87,6 +85,8 @@ Component {
         ToolButton {
             id: logButton;
             icon.name: "text-plain";
+            icon.width: units.iconSizes.small;
+            icon.height: units.iconSizes.small;
             ToolTip.text: qsTr("Show log");
             ToolTip.visible: hovered;
             onClicked: stackProcess.showLog(composeFile);
