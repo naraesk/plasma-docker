@@ -13,7 +13,7 @@ I maid this for my own convenience and it only has a minimal ui. Feel free to op
 * open public port in browser
 * edit compose file in default text editor
 * show log files (`docker-compose logs`)
-* updates automatically if status changed externally (delay up to 30s)
+* show status of container (with some delay)
 
 ## Manual Installation
 
