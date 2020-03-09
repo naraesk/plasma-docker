@@ -7,13 +7,13 @@ I maid this for my own convenience and it only has a minimal ui. Feel free to op
 ![Screenshot](../../wiki/screenshots/ui%20v2.2.0.png)
 
 ### Features
+* show status of container (with some delay)
 * start and stop stacks (`docker-compose up` and `docker-compose stop`)
 * start and stop services (`docker-compose up SERVICE` and `docker-compose stop SERVICE`)
 * start shell for services (`docker-compose exec SERVICE sh`)
 * open public port in browser
 * edit compose file in default text editor
 * show log files (`docker-compose logs`)
-* show status of container (with some delay)
 
 ## Manual Installation
 
