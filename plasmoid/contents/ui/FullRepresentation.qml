@@ -19,6 +19,7 @@
 
 import QtQuick 2.12;
 import QtQuick.Layouts 1.12;
+import QtQuick.Controls 2.12;
 import eu.naraesk.docker.process 1.2;
 import org.kde.plasma.plasmoid 2.0;
 import "model.js" as Model;
@@ -58,5 +59,15 @@ Item {
         delegate: ServiceDelegate {}
         section.property: 'stack';
         section.delegate: StackDelegate {}
+    }
+
+    Label {
+        id: startLabel;
+        anchors.fill: parent;
+        horizontalAlignment: Text.AlignHCenter;
+        verticalAlignment: Text.AlignVCenter;
+        text: qsTr("Open the configuration menu to add docker-compose.yml files");
+        wrapMode: Label.WordWrap;
+        visible: serviceModel.count === 0;
     }
 }
