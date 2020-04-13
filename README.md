@@ -21,7 +21,7 @@ This is a simple plasma applet for KDE Plasma 5 to control docker containers via
 
 Please install docker-compose. Most distributions should provide packages for it. Then, run `install.sh` to install the plasmoid or run the following commands manually.
 
-1. `mkdir biuld && cd build`
+1. `mkdir build && cd build`
 2. ```cmake -DCMAKE_INSTALL_PREFIX=`kf5-config --install-prefix` -DCMAKE_BUILD_TYPE=Release -DKDE_INSTALL_LIBDIR=lib -DKDE_INSTALL_USE_QT_SYS_PATHS=ON ../```
 3. `make`
 4. `sudo make install`
