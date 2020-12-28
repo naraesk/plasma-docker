@@ -27,9 +27,8 @@ Item {
     Image {
         id: compactIcon;
         source: "../../images/icon";
-        fillMode: Image.PreserveAspectCrop;
+        fillMode: Image.PreserveAspectFit;
         anchors.fill: parent;
-        anchors.margins: units.smallSpacing;
         height: parent.height;
         width: parent.width;
     }
